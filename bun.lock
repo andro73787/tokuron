@@ -5,7 +5,11 @@
       "name": "tokuron-2025",
       "dependencies": {
         "@hono/node-server": "^1.14.2",
+        "@hono/swagger-ui": "^0.5.1",
+        "@hono/zod-openapi": "^0.19.6",
+        "@hono/zod-validator": "^0.5.0",
         "hono": "^4.7.10",
+        "zod": "^3.25.28",
       },
       "devDependencies": {
         "esbuild": "^0.21.4",
@@ -14,6 +18,8 @@
     },
   },
   "packages": {
+    "@asteasolutions/zod-to-openapi": ["@asteasolutions/zod-to-openapi@7.3.2", "", { "dependencies": { "openapi3-ts": "^4.1.2" }, "peerDependencies": { "zod": "^3.20.2" } }, "sha512-Wvl+jHwSgYrRc3tQLMG7Qxq6wn0WjDk8E9ZA0lAyW73FqK18XPHVIKpk0lA6L0S+zmzzNKTndeV2v/Or0LyfHQ=="],
+
     "@esbuild/aix-ppc64": ["@esbuild/aix-ppc64@0.21.5", "", { "os": "aix", "cpu": "ppc64" }, "sha512-1SDgH6ZSPTlggy1yI6+Dbkiz8xzpHJEVAlF/AM1tHPLsf5STom9rwtjE4hKAF20FfXXNTFqEYXyJNWh1GiZedQ=="],
 
     "@esbuild/android-arm": ["@esbuild/android-arm@0.21.5", "", { "os": "android", "cpu": "arm" }, "sha512-vCPvzSjpPHEi1siZdlvAlsPxXl7WbOVUBBAowWug4rJHb68Ox8KualB+1ocNvT5fjv6wpkX6o/iEpbDrf68zcg=="],
@@ -62,6 +68,12 @@
 
     "@hono/node-server": ["@hono/node-server@1.14.2", "", { "peerDependencies": { "hono": "^4" } }, "sha512-GHjpOeHYbr9d1vkID2sNUYkl5IxumyhDrUJB7wBp7jvqYwPFt+oNKsAPBRcdSbV7kIrXhouLE199ks1QcK4r7A=="],
 
+    "@hono/swagger-ui": ["@hono/swagger-ui@0.5.1", "", { "peerDependencies": { "hono": "*" } }, "sha512-XpUCfszLJ9b1rtFdzqOSHfdg9pfBiC2J5piEjuSanYpDDTIwpMz0ciiv5N3WWUaQpz9fEgH8lttQqL41vIFuDA=="],
+
+    "@hono/zod-openapi": ["@hono/zod-openapi@0.19.6", "", { "dependencies": { "@asteasolutions/zod-to-openapi": "^7.3.0", "@hono/zod-validator": "^0.5.0" }, "peerDependencies": { "hono": ">=4.3.6", "zod": "3.*" } }, "sha512-qD2I0i5Ksry8gf47rXR6tuUAfv5S/wRZPRUNn+y8vOkgArDtIs30Ha3KGHeuGhcMk773D197IlPUppSCbHt6iQ=="],
+
+    "@hono/zod-validator": ["@hono/zod-validator@0.5.0", "", { "peerDependencies": { "hono": ">=3.9.0", "zod": "^3.19.1" } }, "sha512-ds5bW6DCgAnNHP33E3ieSbaZFd5dkV52ZjyaXtGoR06APFrCtzAsKZxTHwOrJNBdXsi0e5wNwo5L4nVEVnJUdg=="],
+
     "ansi-styles": ["ansi-styles@6.2.1", "", {}, "sha512-bN798gFfQX+viw3R7yrGWRqnrN2oRkEkUjjl4JNn4E8GxxbjtG3FbrEIIY3l8/hrwUwIeCZvi4QuOTP4MErVug=="],
 
     "balanced-match": ["balanced-match@1.0.2", "", {}, "sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw=="],
@@ -86,6 +98,8 @@
 
     "npm-run-all2": ["npm-run-all2@6.2.6", "", { "dependencies": { "ansi-styles": "^6.2.1", "cross-spawn": "^7.0.3", "memorystream": "^0.3.1", "minimatch": "^9.0.0", "pidtree": "^0.6.0", "read-package-json-fast": "^3.0.2", "shell-quote": "^1.7.3", "which": "^3.0.1" }, "bin": { "run-p": "bin/run-p/index.js", "run-s": "bin/run-s/index.js", "npm-run-all": "bin/npm-run-all/index.js", "npm-run-all2": "bin/npm-run-all/index.js" } }, "sha512-tkyb4pc0Zb0oOswCb5tORPk9MvVL6gcDq1cMItQHmsbVk1skk7YF6cH+UU2GxeNLHMuk6wFEOSmEmJ2cnAK1jg=="],
 
+    "openapi3-ts": ["openapi3-ts@4.4.0", "", { "dependencies": { "yaml": "^2.5.0" } }, "sha512-9asTNB9IkKEzWMcHmVZE7Ts3kC9G7AFHfs8i7caD8HbI76gEjdkId4z/AkP83xdZsH7PLAnnbl47qZkXuxpArw=="],
+
     "path-key": ["path-key@3.1.1", "", {}, "sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q=="],
 
     "pidtree": ["pidtree@0.6.0", "", { "bin": { "pidtree": "bin/pidtree.js" } }, "sha512-eG2dWTVw5bzqGRztnHExczNxt5VGsE6OwTeCG3fdUf9KBsZzO3R5OIIIzWR+iZA0NtZ+RDVdaoE2dK1cn6jH4g=="],
@@ -99,6 +113,10 @@
     "shell-quote": ["shell-quote@1.8.2", "", {}, "sha512-AzqKpGKjrj7EM6rKVQEPpB288oCfnrEIuyoT9cyF4nmGa7V8Zk6f7RRqYisX8X9m+Q7bd632aZW4ky7EhbQztA=="],
 
     "which": ["which@3.0.1", "", { "dependencies": { "isexe": "^2.0.0" }, "bin": { "node-which": "bin/which.js" } }, "sha512-XA1b62dzQzLfaEOSQFTCOd5KFf/1VSzZo7/7TUjnya6u0vGGKzU96UQBZTAThCb2j4/xjBAyii1OhRLJEivHvg=="],
+
+    "yaml": ["yaml@2.8.0", "", { "bin": { "yaml": "bin.mjs" } }, "sha512-4lLa/EcQCB0cJkyts+FpIRx5G/llPxfP6VQU5KByHEhLxY3IJCH0f0Hy1MHI8sClTvsIb8qwRJ6R/ZdlDJ/leQ=="],
+
+    "zod": ["zod@3.25.28", "", {}, "sha512-/nt/67WYKnr5by3YS7LroZJbtcCBurDKKPBPWWzaxvVCGuG/NOsiKkrjoOhI8mJ+SQUXEbUzeB3S+6XDUEEj7Q=="],
 
     "cross-spawn/which": ["which@2.0.2", "", { "dependencies": { "isexe": "^2.0.0" }, "bin": { "node-which": "./bin/node-which" } }, "sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA=="],
   }
