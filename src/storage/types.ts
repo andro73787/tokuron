@@ -3,7 +3,7 @@ export interface IDatabaseResource<T, S> {
     update(id: string, data: Partial<S>): Promise<T | null>;
     get(id: string): Promise<T | null>;
     find(data: Partial<T>): Promise<T | null>;
-    findAll(data?: Partial<T>): Promise<T[]>;
+    findAll(data: Partial<T>): Promise<T[]>;
     delete(id: string): Promise<T | null>;
   }
   
