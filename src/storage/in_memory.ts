@@ -1,4 +1,4 @@
-import type { DBEntity } from "../models /db";
+import type { DBEntity } from "../models/db";
 import type { IDatabaseResource } from "./types";
 
 export class SimpleInMemoryResource<T extends S & DBEntity, S> 

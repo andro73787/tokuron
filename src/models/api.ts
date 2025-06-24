@@ -6,12 +6,11 @@ import type {
     DBUser,
     DBCreateChat
   } from "./db";
-  
-  // 👤 Хэрэглэгчтэй холбоотой API төрөл
+  // Хэрэглэгчтэй холбоотой API төрөл
   export type APICreateUser = DBCreateUser;
   export type APIUser = Omit<DBUser, "password">;
   
-  // 💬 Чаттай холбоотой API төрөл
+  // Чаттай холбоотой API төрөл
   export type APICreateChat = DBCreateChat;
   export type APIChat = DBChat;
   
