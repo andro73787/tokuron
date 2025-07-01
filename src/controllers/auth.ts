@@ -38,9 +38,8 @@ authApp.post(LOGIN_ROUTE, async (c) => {
        }
     const { JWT_SECRET } = env<{ JWT_SECRET: string }, typeof c>(c);
     const token = await sign ({ ...fulluser, password: undefined }, JWT_SECRET );
-    const token = await sign({ email: email, password: undefined }, JWT_SECRET);
         return c.json({ token });
     });
-    
+
     return authApp ;   
 }
