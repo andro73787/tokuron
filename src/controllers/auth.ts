@@ -2,7 +2,7 @@ import { Hono } from "hono";
 import { env } from "hono/adapter";
 import { sign } from "hono/jwt";
 import bcrypt from "bcryptjs";
-import { ContextVariables } from "../constants";
+import type  { ContextVariables } from "../constants";
 import type { DBCreateUser, DBUser } from "../models/db";
 import type { IDatabaseResource } from "../storage/types" ;
 export const AUTH_PREFIX ="/auth/";
@@ -24,8 +24,7 @@ const salt = await bcrypt.genSalt(10);
 const hashedPassword = await bcrypt.hash(password, salt);
 await userResource.create({name, email, password: hashedPassword });
 return c.json({success: true });
-return c.json({ salt: salt, password: hashedPassword });
-        });
+});
 authApp.post(LOGIN_ROUTE, async (c) => {
     const { email, password } = await c.req.json() ;
     const fulluser = await userResource.find( { email });

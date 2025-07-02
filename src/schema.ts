@@ -1,7 +1,5 @@
 import { sqliteTable, integer, text, uniqueIndex } from "drizzle-orm/sqlite-core";
-import { sql, relations, One } from "drizzle-orm";
-import { cidr } from "drizzle-orm/pg-core";
-
+import { sql, relations,} from "drizzle-orm";
 export const userTable = sqliteTable(
   "user",
   {
