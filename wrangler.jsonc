@@ -22,13 +22,16 @@
   //     "bucket_name": "my-bucket"
   //   }
   // ],
+
+
   "d1_databases": [
-   {
-    "binding": "DB",
-    "database_name": "tokurondb",
-    "database_id": "85b2a189-a2bd-4d11-8fac-7875fd4d9251SS"
-   }
+    {
+      "binding": "DB",
+      "database_name": "tokurondb",
+      "database_id": "6437974c-22c1-463d-b15f-3f54bb081859"
+    }
   ],
+
   // "ai": {
   //   "binding": "AI"
   // },

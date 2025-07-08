@@ -27,7 +27,45 @@ export class UserSQLResource implements IDatabaseResource<DBUser, DBCreateUser> 
   async findAll(data: Partial<DBUser>): Promise<DBUser[]> {
     return this.findByFields(data, true);
   }
-
+  async delete(id: string): Promise<DBUser | null> {
+    const result = await this.db
+      .delete(userTable)
+      .where(eq(userTable.id, id))
+      .returning()
+      .get();
+  
+    if (result === undefined) {
+      return null;
+    }
+  
+    return result as DBUser;
+  }
+  async update(id: string, data: Partial<DBUser>): Promise<DBUser | null> {
+    const updateData = Object.entries(data)
+      .filter(([_, value]) => value !== undefined)
+      .reduce((acc, [key, value]) => {
+        acc[key as keyof DBUser] = value;
+        return acc;
+      }, {} as Record<string, any>);
+  
+    if (Object.keys(updateData).length === 0) {
+      return null;
+    }
+  
+    const result = await this.db
+      .update(userTable)
+      .set(updateData)
+      .where(eq(userTable.id, id))
+      .returning()
+      .get();
+  
+    if (result === undefined) {
+      return null;
+    }
+  
+    return result as DBUser;
+  }
+    
   private async findByFields<T extends (DBUser | null) | DBUser[]>(
     data: Partial<DBUser>,
     all: boolean = false,
@@ -53,8 +91,167 @@ export class UserSQLResource implements IDatabaseResource<DBUser, DBCreateUser> 
 
 export class ChatSQLResource implements IDatabaseResource<DBChat, DBCreateChat> {
   db: ReturnType<typeof drizzle>;
+  constructor(d1: D1Database) {
+    this.db = drizzle(d1);
+  }
+
+  async create(data: DBCreateChat): Promise<DBChat> {
+    const result = await this.db
+      .insert(chatTable)
+      .values(data)
+      .returning()
+      .get();
+    return result as DBChat;
+  }
+
+  async find(data: Partial<DBChat>): Promise<DBChat | null> {
+    return this.findByFields(data, false);
+  }
+
+  async findAll(data: Partial<DBChat>): Promise<DBChat[]> {
+    return this.findByFields(data, true);
+  }
+
+  async delete(id: string): Promise<DBChat | null> {
+    const result = await this.db
+      .delete(chatTable)
+      .where(eq(chatTable.id, id))
+      .returning()
+      .get();
+
+      if (result === undefined) {
+        return null;
+      }
+      return result as DBUser;
+  }
+
+  async update(id: string, data: Partial<DBChat>): Promise<DBChat | null> {
+    const updateData = Object.entries(data)
+      .filter(([_, value]) => value !== undefined)
+      .reduce((acc, [key, value]) => {
+        acc[key as keyof DBChat] = value;
+        return acc;
+      }, {} as Record<string, any>);
+
+    if (Object.keys(updateData).length === 0) {
+      return null;
+    }
+
+    const result = await this.db
+      .update(chatTable)
+      .set(updateData)
+      .where(eq(chatTable.id, id))
+      .returning()
+      .get();
+
+      if (result === undefined) {
+        return null;
+      }
+      return result as DBUser;
+  }
+
+  private async findByFields<T extends (DBChat | null) | DBChat[]>(
+    data: Partial<DBChat>,
+    all: boolean
+  ): Promise<T> {
+    let query = this.db.select().from(chatTable);
+    const conditions = Object.entries(data)
+      .filter(([_, value]) => value !== undefined)
+      .map(([key, value]) => eq(chatTable[key as keyof typeof chatTable], value as string));
+
+    if (conditions.length > 0) {
+      query = query.where(and(...conditions));
+    }
+
+    if (all) {
+      return (await query.all()) as T;
+    } else {
+      const result = await query.get();
+      return (result || null) as T;
+    }
+  }
 }
+
 
 export class MessageSQLResource implements IDatabaseResource<DBMessage, DBCreateMessage> {
   db: ReturnType<typeof drizzle>;
+  constructor(d1: D1Database) {
+    this.db = drizzle(d1);
+  }
+
+  async create(data: DBCreateMessage): Promise<DBMessage> {
+    const result = await this.db
+      .insert(messageTable)
+      .values(data)
+      .returning()
+      .get();
+    return result as DBMessage;
+  }
+
+  async find(data: Partial<DBMessage>): Promise<DBMessage | null> {
+    return this.findByFields(data, false);
+  }
+
+  async findAll(data: Partial<DBMessage>): Promise<DBMessage[]> {
+    return this.findByFields(data, true);
+  }
+
+  async delete(id: string): Promise<DBMessage | null> {
+    const result = await this.db
+      .delete(messageTable)
+      .where(eq(messageTable.id, id))
+      .returning()
+      .get();
+      if (result === undefined) {
+        return null;
+      }
+      return result as DBUser;
+  }
+
+  async update(id: string, data: Partial<DBMessage>): Promise<DBMessage | null> {
+    const updateData = Object.entries(data)
+      .filter(([_, value]) => value !== undefined)
+      .reduce((acc, [key, value]) => {
+        acc[key as keyof DBMessage] = value;
+        return acc;
+      }, {} as Record<string, any>);
+
+    if (Object.keys(updateData).length === 0) {
+      return null;
+    }
+
+    const result = await this.db
+      .update(messageTable)
+      .set(updateData)
+      .where(eq(messageTable.id, id))
+      .returning()
+      .get();
+      if (result === undefined) {
+        return null;
+      }
+      return result as DBUser;
+  }
+
+  private async findByFields<T extends (DBMessage | null) | DBMessage[]>(
+    data: Partial<DBMessage>,
+    all: boolean
+  ): Promise<T> {
+    let query = this.db.select().from(messageTable);
+
+    const conditions = Object.entries(data)
+      .filter(([_, value]) => value !== undefined)
+      .map(([key, value]) => eq(messageTable[key as keyof typeof messageTable], value as string));
+
+    if (conditions.length > 0) {
+      query = query.where(and(...conditions));
+    }
+
+    if (all) {
+      return (await query.all()) as T;
+    } else {
+      const result = await query.get();
+      return (result || null) as T;
+    }
+  }
 }
+

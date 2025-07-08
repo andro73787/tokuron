@@ -30,9 +30,9 @@ export function createMainApp(
     return app;
   }
   export function createSQLApp () { 
-    return createAuthApp(
+    return createMainApp(
       createAuthApp(new UserSQLResource(env.DB))
-    )
+    );
   }
  // export function createInMemoryApp() {
  //   return createMainApp(
