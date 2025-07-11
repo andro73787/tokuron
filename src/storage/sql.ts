@@ -122,7 +122,7 @@ export class ChatSQLResource implements IDatabaseResource<DBChat, DBCreateChat> 
       if (result === undefined) {
         return null;
       }
-      return result as DBUser;
+      return result as DBChat;
   }
 
   async update(id: string, data: Partial<DBChat>): Promise<DBChat | null> {
@@ -147,7 +147,7 @@ export class ChatSQLResource implements IDatabaseResource<DBChat, DBCreateChat> 
       if (result === undefined) {
         return null;
       }
-      return result as DBUser;
+      return result as DBChat;
   }
 
   private async findByFields<T extends (DBChat | null) | DBChat[]>(
@@ -205,7 +205,7 @@ export class MessageSQLResource implements IDatabaseResource<DBMessage, DBCreate
       if (result === undefined) {
         return null;
       }
-      return result as DBUser;
+      return result as DBMessage;
   }
 
   async update(id: string, data: Partial<DBMessage>): Promise<DBMessage | null> {
@@ -229,7 +229,7 @@ export class MessageSQLResource implements IDatabaseResource<DBMessage, DBCreate
       if (result === undefined) {
         return null;
       }
-      return result as DBUser;
+      return result as DBMessage;
   }
 
   private async findByFields<T extends (DBMessage | null) | DBMessage[]>(
