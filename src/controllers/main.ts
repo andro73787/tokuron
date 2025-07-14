@@ -29,13 +29,13 @@ export function createMainApp(
   
     return createMainApp(authApp, chatApp);
   }
-export function createInMemoryApp() {
-  return createMainApp(
-   createAuthApp(new SimpleInMemoryResource<DBUser, DBCreateUser>()),
-   createChatApp(
-   new SimpleInMemoryResource<DBChat, DBCreateChat>(),
-   new SimpleInMemoryResource<DBMessage, DBCreateMessage> (),
+//export function createInMemoryApp() {
+  // return createMainApp(
+   // createAuthApp(new SimpleInMemoryResource<DBUser, DBCreateUser>()),
+   //createChatApp(
+   // new SimpleInMemoryResource<DBChat, DBCreateChat>(),
+   // new SimpleInMemoryResource<DBMessage, DBCreateMessage> (),
       
- )
- );
-  }
+ //)
+ //);
+ // }
