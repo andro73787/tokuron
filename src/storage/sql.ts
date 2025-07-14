@@ -98,7 +98,7 @@ export class ChatSQLResource implements IDatabaseResource<DBChat, DBCreateChat> 
   async create(data: DBCreateChat): Promise<DBChat> {
     const result = await this.db
       .insert(chatTable)
-      .values(data)
+      .values({ name: data.name, email: data.email, password: data.password })
       .returning()
       .get();
     return result as DBChat;
@@ -182,7 +182,7 @@ export class MessageSQLResource implements IDatabaseResource<DBMessage, DBCreate
   async create(data: DBCreateMessage): Promise<DBMessage> {
     const result = await this.db
       .insert(messageTable)
-      .values(data)
+      .values({ name: data.name, email: data.email, password: data.password })
       .returning()
       .get();
     return result as DBMessage;
