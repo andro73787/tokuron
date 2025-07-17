@@ -26,6 +26,16 @@ export class UserSQLResource implements IDatabaseResource<DBUser, DBCreateUser> 
 
   async findAll(data: Partial<DBUser>): Promise<DBUser[]> {
     return this.findByFields(data, true);
+  } 
+  async get(id: string): Promise<DBUser | null> {
+    const result = await this.db 
+    .select() 
+    .from(userTable)
+    .where(eq(userTable.id, id))
+    .get(); 
+    return result as DBUser || null;  
+
+    
   }
   async delete(id: string): Promise<DBUser | null> {
     const result = await this.db
@@ -98,7 +108,7 @@ export class ChatSQLResource implements IDatabaseResource<DBChat, DBCreateChat> 
   async create(data: DBCreateChat): Promise<DBChat> {
     const result = await this.db
       .insert(chatTable)
-      .values({ name: data.name, email: data.email, password: data.password })
+      .values({ name: data.name, ownerId: data.ownerId })
       .returning()
       .get();
     return result as DBChat;
@@ -111,7 +121,16 @@ export class ChatSQLResource implements IDatabaseResource<DBChat, DBCreateChat> 
   async findAll(data: Partial<DBChat>): Promise<DBChat[]> {
     return this.findByFields(data, true);
   }
+  async get(id: string): Promise<DBChat| null> {
+    const result = await this.db 
+    .select() 
+    .from(userTable)
+    .where(eq(userTable.id, id))
+    .get(); 
+    return result as DBChat || null;  
 
+    
+  }
   async delete(id: string): Promise<DBChat | null> {
     const result = await this.db
       .delete(chatTable)
@@ -182,7 +201,7 @@ export class MessageSQLResource implements IDatabaseResource<DBMessage, DBCreate
   async create(data: DBCreateMessage): Promise<DBMessage> {
     const result = await this.db
       .insert(messageTable)
-      .values({ name: data.name, email: data.email, password: data.password })
+      .values({ chatId: data.chatId, type: data.type, message: data.message })
       .returning()
       .get();
     return result as DBMessage;
@@ -195,7 +214,16 @@ export class MessageSQLResource implements IDatabaseResource<DBMessage, DBCreate
   async findAll(data: Partial<DBMessage>): Promise<DBMessage[]> {
     return this.findByFields(data, true);
   }
+  async get(id: string): Promise<DBMessage | null> {
+    const result = await this.db 
+    .select() 
+    .from(userTable)
+    .where(eq(userTable.id, id))
+    .get(); 
+    return result as DBMessage || null;  
 
+    
+  }
   async delete(id: string): Promise<DBMessage | null> {
     const result = await this.db
       .delete(messageTable)

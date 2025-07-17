@@ -14,7 +14,7 @@ import type {
   export type APICreateChat = DBCreateChat;
   export type APIChat = DBChat;
   
-  // ✉️ Мессежтэй холбоотой API төрөл
+  // Мессежтэй холбоотой API төрөл
   export type APICreateMessage = DBCreateMessage;
   export type APIMessage = DBMessage;
   
