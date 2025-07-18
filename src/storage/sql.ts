@@ -124,8 +124,8 @@ export class ChatSQLResource implements IDatabaseResource<DBChat, DBCreateChat> 
   async get(id: string): Promise<DBChat| null> {
     const result = await this.db 
     .select() 
-    .from(userTable)
-    .where(eq(userTable.id, id))
+    .from(chatTable)
+    .where(eq(chatTable.id, id))
     .get(); 
     return result as DBChat || null;  
 
@@ -217,8 +217,8 @@ export class MessageSQLResource implements IDatabaseResource<DBMessage, DBCreate
   async get(id: string): Promise<DBMessage | null> {
     const result = await this.db 
     .select() 
-    .from(userTable)
-    .where(eq(userTable.id, id))
+    .from(messageTable)
+    .where(eq(messageTable.id, id))
     .get(); 
     return result as DBMessage || null;  
 
