@@ -14,6 +14,15 @@ export function createMainApp(
   ) {
     const app = new Hono<ContextVariables>().basePath(API_PREFIX);
     app.use("*", cors({origin: CLIENT_ORIGIN}));
+    app.options('*', (c) => {
+      return c.json({}, {
+        headers: {
+          'Access-Control-Allow-Origin': CLIENT_ORIGIN,
+          'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        },
+      })
+    });
     app.use("*", checkJWTAuth);
     app.use("*", attachUserId);
     app.route(AUTH_PREFIX, authApp);
